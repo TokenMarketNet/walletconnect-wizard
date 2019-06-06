@@ -10,6 +10,10 @@ This is a web component to integrate WalletConnect token and cryptocurrency wall
 * Support multiple blockchains: Ethereum, Binance, otehrs
 * Maintain list of logos, names and install locations of supported wallets
 
+# Demo
+
+* See live demo
+
 # UI mockups
 
 * [See LucidChart mock ups](https://www.lucidchart.com/documents/view/741793a6-be73-4ee4-8709-46e811ffe4c1)
