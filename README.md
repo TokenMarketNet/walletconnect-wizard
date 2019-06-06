@@ -18,6 +18,10 @@ This is a web component to integrate WalletConnect token and cryptocurrency wall
 
 * [See LucidChart mock ups](https://www.lucidchart.com/documents/view/741793a6-be73-4ee4-8709-46e811ffe4c1)
 
+# Eligible wallets
+
+We are currently focusing on wallets that can directly interact with smart contracts and blockchain. Wallets that do only transfer-of-value only are out of the scope.
+
 # License
 
 MIT
