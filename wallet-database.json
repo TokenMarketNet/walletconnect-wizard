@@ -1,0 +1,23 @@
+[
+  {
+    "id": "trust",
+    "name": "Trust Wallet",
+    "homepage": "https://trustwallet.com/",
+    "install": {
+      "chrome": null,
+      "ios": "https://...",
+      "android": "https://...",
+    },
+  },
+  
+  {
+    "id": "walleth",
+    "name": "WallETH",
+    "homepage": "https://walleth.org/",
+    "install": {
+      "chrome": null,
+      "ios": null,
+      "android": "https://...",
+    },
+  },  
+]
