@@ -1,6 +1,8 @@
 # WalletConnect Wizard
 
-This is a web component to integrate WalletConnect token and cryptocurrency wallets to your service easily.
+This is a web component to integrate [WalletConnect](https://www.myetherwallet.com/) token and cryptocurrency wallets to your service easily. We believe that separating the concerns of services and value storages increases security and privacy of services. However this so called Web3 principle is also a novel concept to users and a lot of education in this area is needed. WalletConnect Wizard component is designed to provide a smooth user experience for helping users to install, start using, confirm transactions and see their tokens in their third party wallets.
+
+We support different kind of wallet mechanisms (see below), though the emphasis is on WalletConnect wallets as they are more secure due to running on a separate hardened mobile device. 
 
 # Goals 
 
