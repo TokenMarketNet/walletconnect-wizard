@@ -23,6 +23,21 @@ This is a web component to integrate WalletConnect token and cryptocurrency wall
 
 We are currently focusing on wallets that can directly interact with smart contracts and blockchain. Wallets that do only transfer-of-value only are out of the scope
 
+For Ethereum the wallet must pass all tests on [example.walletconnect.org](https://example.walletconnect.org)
+
+## Different wallet categories
+
+We can roughly classify how wallets and web services interact
+
+* Mobile wallets that connect to your service by reading a [WalletConnect](https://walletconnect.org) QR code on a desktop page
+* Desktop web browser extensions (MetaMask)
+* Wallet integrated in a desktop web browser (Opera, Brave)
+* Wallet integrated in a mobile browser (Opera for Android)
+* Mobile app that integrates a WebView web browser (Status.im)
+* Desktop wallet apps that connect via localhost socket (Scatter for EOS)
+
+Limitations between if your wallet integrates a browser or a browser integrates a wallet comes obvious when you try to interact with third party sign in services like Facebook and Google.
+
 # Wallet database entries
 
 * *id*: internal id
@@ -31,7 +46,7 @@ We are currently focusing on wallets that can directly interact with smart contr
 * *support*: Link to the support - displayed on connection page if the user is having issues
 * *blockchains*: ids of supported blockchains - currently `ethereum` and `binance`
 * *install*: direct installation links to different platform
-* *operations*: what kind of operations this support: transactions, signing, etc.
+* *operations*: what kind of operations this support: transactions, message signing, etc.
 
 # License
 
