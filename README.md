@@ -1,12 +1,15 @@
 # WalletConnect Wizard
 
-This is a web component to integrate [WalletConnect](https://www.myetherwallet.com/) token and cryptocurrency wallets to your service easily. We believe that separating the concerns of services and value storages increases security and privacy of services. However this so called Web3 principle is also a novel concept to users and a lot of education in this area is needed. WalletConnect Wizard component is designed to provide a smooth user experience for helping users to install, start using, confirm transactions and see their tokens in their third party wallets.
+This is a web component to integrate [WalletConnect](https://www.myetherwallet.com/) token and cryptocurrency wallets to your service easily. 
+
+We believe that separating the concerns of service providers and value storages increases security and privacy of Internet. However this so called Web3 principle is also a novel concept for a lot of users and education in this area is needed. WalletConnect Wizard is a component designed to provide a smooth user experience for helping users to install, start using, confirm transactions and see their tokens in their third party wallets.
 
 We support different kind of wallet mechanisms (see below), though the emphasis is on WalletConnect wallets as they are more secure due to running on a separate hardened mobile device. 
 
 # Goals 
 
-* Easy to integrate to your website - provide bundled JS and CSS option
+* A component for web and mobile service developers
+* Easy to integrate to your site - providing a bundled JS and CSS option
 * Explain new users what is a wallet and why it is needed
 * Support both WalletConnect (mobile) and web3.js/MetaMask (desktop) style wallets
 * Support multiple blockchains: Ethereum, Binance, otehrs
