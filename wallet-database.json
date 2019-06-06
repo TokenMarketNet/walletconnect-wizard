@@ -3,21 +3,67 @@
     "id": "trust",
     "name": "Trust Wallet",
     "homepage": "https://trustwallet.com/",
+    "blockchains": ["ethereum", "binance"],
     "install": {
-      "chrome": null,
       "ios": "https://...",
       "android": "https://...",
     },
+    
+    "operations": {
+      "walletConnect": true,       
+      "web3": false,
+    },    
   },
   
   {
     "id": "walleth",
     "name": "WallETH",
     "homepage": "https://walleth.org/",
+    "blockchains": ["ethereum"],    
     "install": {
-      "chrome": null,
       "ios": null,
       "android": "https://...",
     },
+    
+    "operations": {
+      "walletConnect": true,       
+      "web3": false,
+    },    
+    
   },  
+  
+  {
+    "id": "metamask",
+    "name": "MetaMask",
+    "homepage": "https://metamask.io/",
+    "blockchains": ["ethereum"],        
+    "install": {
+      "chrome": "https://...",,
+      "firefox": "https://...",,      
+      "ios": null,
+      "android": "https://...",
+    },
+  },    
+  
+  {
+    "id": "brave",
+    "name": "Brave",
+    "homepage": "https://brave.com/",
+    "blockchains": ["ethereum"],           
+    "install": {
+      "desktop": "https://brave.com/",
+    },
+  },      
+  
+  {
+    "id": "opera",
+    "name": "Opera",
+    "homepage": "https://www.opera.com/",
+    "blockchains": ["ethereum"],           
+    "install": {
+      "desktop": "https://www.opera.com/",
+      "android": "https://...",      
+    },
+  },      
+  
 ]
