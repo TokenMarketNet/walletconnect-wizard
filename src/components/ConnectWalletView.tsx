@@ -1,13 +1,19 @@
 import * as React from 'react';
+import WalletConnect from '@walletconnect/browser';
+import WalletConnectQrCode from './WalletConnectQrCode';
 
 export interface ConnectWalletViewProps {
+    walletConnector: WalletConnect | null | undefined;
     gotoInstallWalletView: () => void;
 }
-export default ({ gotoInstallWalletView }: ConnectWalletViewProps) => {
+export default (props: ConnectWalletViewProps) => {
     const onGotoInstallWalletView = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        gotoInstallWalletView();
+        props.gotoInstallWalletView();
     }
+    const {
+        walletConnector
+    } = props;
 
     return (
         <div>
@@ -15,9 +21,15 @@ export default ({ gotoInstallWalletView }: ConnectWalletViewProps) => {
                 In order to use this service you need to have a compatible wallet{' '}
                 application. The wallet securely stores and transfers your assets.
             </div>
-            <div>
+            <div
+                style={{ width: 300 }}
+            >
                 <h2>Connect wallet</h2>
-                <div>WalletConnect qr code goes here</div>
+                {!!walletConnector && (
+                    <WalletConnectQrCode
+                        walletConnector={walletConnector}
+                    />
+                )}
                 <button onClick={onGotoInstallWalletView}>
                     See compatible wallets
                 </button>
@@ -25,7 +37,9 @@ export default ({ gotoInstallWalletView }: ConnectWalletViewProps) => {
             <div>
                 <h2>Install wallet</h2>
                 <div>Big icon about connecting </div>
-                <div>WalletConnect qr code modal goes here</div>
+                <button onClick={onGotoInstallWalletView}>
+                    See supported wallets
+                </button>
             </div>
         </div>
     )
