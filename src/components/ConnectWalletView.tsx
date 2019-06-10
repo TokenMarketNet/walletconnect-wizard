@@ -1,6 +1,7 @@
 import * as React from 'react';
 import WalletConnect from '@walletconnect/browser';
 import WalletConnectQrCode from './WalletConnectQrCode';
+import { SubHeading, Header, Row, Col, ButtonLink } from './theme';
 
 export interface ConnectWalletViewProps {
     walletConnector: WalletConnect | null | undefined;
@@ -17,30 +18,30 @@ export default (props: ConnectWalletViewProps) => {
 
     return (
         <div>
-            <div>
+            <Header>
                 In order to use this service you need to have a compatible wallet{' '}
                 application. The wallet securely stores and transfers your assets.
-            </div>
-            <div
-                style={{ width: 300 }}
-            >
-                <h2>Connect wallet</h2>
-                {!!walletConnector && (
-                    <WalletConnectQrCode
-                        walletConnector={walletConnector}
-                    />
-                )}
-                <button onClick={onGotoInstallWalletView}>
-                    See compatible wallets
-                </button>
-            </div>
-            <div>
-                <h2>Install wallet</h2>
-                <div>Big icon about connecting </div>
-                <button onClick={onGotoInstallWalletView}>
-                    See supported wallets
-                </button>
-            </div>
+            </Header>
+            <Row>
+                <Col centered>
+                    <SubHeading>Connect wallet</SubHeading>
+                    {!!walletConnector && (
+                        <WalletConnectQrCode
+                            walletConnector={walletConnector}
+                        />
+                    )}
+                    <ButtonLink onClick={onGotoInstallWalletView}>
+                        See compatible wallets
+                    </ButtonLink>
+                </Col>
+                <Col centered>
+                    <SubHeading>Install wallet</SubHeading>
+                    <div>Big icon about connecting </div>
+                    <ButtonLink onClick={onGotoInstallWalletView}>
+                        See supported wallets
+                    </ButtonLink>
+                </Col>
+            </Row>
         </div>
     )
 }

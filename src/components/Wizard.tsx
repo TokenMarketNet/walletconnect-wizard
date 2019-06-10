@@ -4,6 +4,7 @@ import { View, DEFAULT_WALLET_CONNECT_OPTS } from '../constants';
 import { createWalletConnector } from '../walletconnect';
 import ConnectWalletView from './ConnectWalletView';
 import InstallWalletView from './InstallWalletView';
+import { ThemeWrapper } from './theme';
 
 export interface WizardProps {
     onConnect?: () => void;
@@ -11,6 +12,7 @@ export interface WizardProps {
     walletConnector?: WalletConnect;
     walletConnectOpts?: any;
     brandName?: string;
+    theme?: any;
 }
 export interface WizardState {
     currentView: View;
@@ -36,7 +38,10 @@ class Wizard extends React.Component<WizardProps, WizardState> {
         const brandName = this.props.brandName || 'This application';
 
         return (
-            <div className="walletconnect-wizard">
+            <ThemeWrapper
+                theme={this.props.theme}
+                className="walletconnect-wizard"
+            >
                 {currentView === View.ConnectWallet ? (
                     <ConnectWalletView
                         walletConnector={walletConnector}
@@ -50,7 +55,7 @@ class Wizard extends React.Component<WizardProps, WizardState> {
                     ) : (currentView === View.Connected) ? (
                         <div>Connected!</div>
                     ) : ''}
-            </div>
+            </ThemeWrapper>
         )
     }
 

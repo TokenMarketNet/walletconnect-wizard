@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SubHeading, Header, Row, Col, ButtonLink } from './theme';
 
 export interface InstallWalletViewProps {
     brandName: string;
@@ -13,26 +14,28 @@ export default (props: InstallWalletViewProps) => {
 
     return (
         <div>
-            <div>
+            <Header>
                 <strong>{brandName}</strong> supports WalletConnect compatible{' '}
                 wallets. Click logos below to install.
-            </div>
+            </Header>
+            <Row>
+                <Col>
+                    <SubHeading>Mobile application wallets</SubHeading>
+                    <ul>
+                        <li>Trust</li>
+                    </ul>
+                </Col>
+                <Col>
+                    <SubHeading>Desktop / browser extension wallets</SubHeading>
+                    <ul>
+                        <li>MetaMask</li>
+                    </ul>
+                </Col>
+            </Row>
             <div>
-                <h2>Mobile application wallets</h2>
-                <ul>
-                    <li>Trust</li>
-                </ul>
-            </div>
-            <div>
-                <h2>Desktop / browser extension wallets</h2>
-                <ul>
-                    <li>MetaMask</li>
-                </ul>
-            </div>
-            <div>
-                <button onClick={onGotoConnectWalletView}>
+                <ButtonLink onClick={onGotoConnectWalletView}>
                     I already have a wallet
-                </button>
+                </ButtonLink>
             </div>
         </div>
     )
