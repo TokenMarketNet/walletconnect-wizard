@@ -1,20 +1,26 @@
 import * as React from 'react';
 import WalletConnect from '@walletconnect/browser';
 import WalletConnectQrCode from './WalletConnectQrCode';
+import MetaMaskConnectButton from './MetaMaskConnectButton';
 import { SubHeading, Header, Row, Col, ButtonLink } from './theme';
 
 export interface ConnectWalletViewProps {
     walletConnector: WalletConnect | null | undefined;
+    metaMaskAvailable: boolean;
     gotoInstallWalletView: () => void;
+    handleMetaMaskConnect: () => void;
 }
 export default (props: ConnectWalletViewProps) => {
+    const {
+        walletConnector,
+        metaMaskAvailable,
+        handleMetaMaskConnect,
+        gotoInstallWalletView,
+    } = props;
     const onGotoInstallWalletView = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        props.gotoInstallWalletView();
+        gotoInstallWalletView();
     }
-    const {
-        walletConnector
-    } = props;
 
     return (
         <div>
@@ -28,6 +34,11 @@ export default (props: ConnectWalletViewProps) => {
                     {!!walletConnector && (
                         <WalletConnectQrCode
                             walletConnector={walletConnector}
+                        />
+                    )}
+                    {metaMaskAvailable && (
+                        <MetaMaskConnectButton
+                            handleClick={handleMetaMaskConnect}
                         />
                     )}
                     <ButtonLink onClick={onGotoInstallWalletView}>

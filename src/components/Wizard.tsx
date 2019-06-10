@@ -3,6 +3,7 @@ import WalletConnect from '@walletconnect/browser';
 import { View, DEFAULT_WALLET_CONNECT_OPTS } from '../constants';
 import { ConnectionResponse } from '../types';
 import { createWalletConnector, createWalletConnectConnectionResponse } from '../walletconnect';
+import { isMetaMaskInstalled, connectMetaMask } from '../metamask';
 import ConnectWalletView from './ConnectWalletView';
 import InstallWalletView from './InstallWalletView';
 import { ThemeWrapper } from './theme';
@@ -17,6 +18,7 @@ export interface WizardProps {
 export interface WizardState {
     currentView: View;
     walletConnector: WalletConnect | null;
+    metaMaskAvailable: boolean; 
 }
 
 class Wizard extends React.Component<WizardProps, WizardState> {
@@ -25,11 +27,15 @@ class Wizard extends React.Component<WizardProps, WizardState> {
     state = {
         currentView: View.ConnectWallet,
         walletConnector: null,
+        metaMaskAvailable: false,
     }
 
     componentDidMount() {
         this.mounted = true;
         this.initWalletConnector();
+        this.setState({
+            metaMaskAvailable: isMetaMaskInstalled(),
+        });
     }
 
     componentWillUnmount() {
@@ -40,6 +46,7 @@ class Wizard extends React.Component<WizardProps, WizardState> {
         const { 
             currentView,
             walletConnector,
+            metaMaskAvailable,
         } = this.state;
         const brandName = this.props.brandName || 'This application';
 
@@ -51,6 +58,8 @@ class Wizard extends React.Component<WizardProps, WizardState> {
                 {currentView === View.ConnectWallet ? (
                     <ConnectWalletView
                         walletConnector={walletConnector}
+                        metaMaskAvailable={metaMaskAvailable}
+                        handleMetaMaskConnect={this.handleMetaMaskConnect}
                         gotoInstallWalletView={this.createChangeViewHandler(View.InstallWallet)}
                     />
                 ) : (currentView === View.InstallWallet) ? (
@@ -74,6 +83,24 @@ class Wizard extends React.Component<WizardProps, WizardState> {
             this.setState({
                 currentView: view,
             });
+        }
+    }
+
+    private handleMetaMaskConnect = async () => {
+        console.log("DEBUG: handleMetaMaskConnect");
+        const {
+            onConnect
+        } = this.props;
+        try {
+            const response = await connectMetaMask();
+            this.changeView(View.Connected);
+            // TODO: should we handle disconnects here somehow
+
+            if (onConnect) {
+                onConnect(response);
+            }
+        } catch (e) {
+            console.error("MetaMask connection request denied");
         }
     }
 
