@@ -1,4 +1,4 @@
-import * as React from 'react';
+import Wizard, { WizardProps } from './components/Wizard';
 
-const Wizard = (props: any) => <div>Hello world</div>;
 export default Wizard;
+export { Wizard, WizardProps };
