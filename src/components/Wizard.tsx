@@ -1,15 +1,15 @@
 import * as React from 'react';
 import WalletConnect from '@walletconnect/browser';
 import { View, DEFAULT_WALLET_CONNECT_OPTS } from '../constants';
-import { createWalletConnector } from '../walletconnect';
+import { ConnectionResponse } from '../types';
+import { createWalletConnector, createWalletConnectConnectionResponse } from '../walletconnect';
 import ConnectWalletView from './ConnectWalletView';
 import InstallWalletView from './InstallWalletView';
 import { ThemeWrapper } from './theme';
 
 export interface WizardProps {
-    onConnect?: () => void;
+    onConnect?: (response: ConnectionResponse) => void;
     onDisconnect?: () => void;
-    walletConnector?: WalletConnect;
     walletConnectOpts?: any;
     brandName?: string;
     theme?: any;
@@ -20,17 +20,23 @@ export interface WizardState {
 }
 
 class Wizard extends React.Component<WizardProps, WizardState> {
+    private mounted = false;
+
     state = {
         currentView: View.ConnectWallet,
         walletConnector: null,
     }
 
     componentDidMount() {
+        this.mounted = true;
         this.initWalletConnector();
     }
 
+    componentWillUnmount() {
+        this.mounted = false;
+    }
+
     render() {
-        console.log('render');
         const { 
             currentView,
             walletConnector,
@@ -64,57 +70,81 @@ class Wizard extends React.Component<WizardProps, WizardState> {
     }
 
     private changeView(view: View) {
-        this.setState({
-            currentView: view,
-        });
+        if(this.mounted) {
+            this.setState({
+                currentView: view,
+            });
+        }
     }
 
     private async initWalletConnector() {
-        let {
-            walletConnector,
-        } = this.props;
+        console.log('DEBUG: initWalletConnector');
         const {
             walletConnectOpts,
             onConnect,
             onDisconnect,
         } = this.props;
 
-        if (!walletConnector) {
-            // WalletConnect not given as props, we must init it
-            const opts = {
-                ...DEFAULT_WALLET_CONNECT_OPTS,
-                ...(walletConnectOpts || {}),
+        const opts = {
+            ...DEFAULT_WALLET_CONNECT_OPTS,
+            ...(walletConnectOpts || {}),
+        }
+        const walletConnector = await createWalletConnector(opts);
+
+        this.setState({
+            walletConnector,
+        });
+
+        const handleConnect = () => {
+            console.log("DEBUG: WalletConnect handleConnect");
+            const response = createWalletConnectConnectionResponse(walletConnector);
+            this.changeView(View.Connected);
+            if (onConnect) {
+                onConnect(response);
             }
-            walletConnector = await createWalletConnector(opts);
         }
 
         const onConnected = (error: any, payload: any) => {
             if (error) {
                 throw error;
             }
-            console.log('WalletConnect connected');
-            if (onConnect) {
-                onConnect(); // TODO: supply parameter
-            }
-            this.changeView(View.Connected);
+            console.log('DEBUG: WalletConnect connected', payload);
+            handleConnect();
         }
 
         const onDisconnected = (error: any, payload: any) => {
             if (error) {
                 throw error;
             }
-            console.log('WalletConnect disconnected');
-            if (onDisconnect) {
-                onDisconnect(); // TODO: supply parameter
+            console.log('DEBUG: WalletConnect disconnected');
+
+            // We need to init WalletConnect again, because a single object
+            // can only handle one session
+            if(this.mounted) {
+                this.setState({
+                    currentView: View.ConnectWallet,
+                    walletConnector: null,
+                })
+                window.setTimeout(() => {
+                    this.initWalletConnector();
+                });
             }
-            this.changeView(View.ConnectWallet);
+
+            if (onDisconnect) {
+                onDisconnect();
+            }
         }
 
-        this.setState({
-            walletConnector,
-        })
-        walletConnector.on('connect', onConnected);
         walletConnector.on('disconnect', onDisconnected);
+
+        if(walletConnector.connected) {
+            // Handle the case where we are connected already (ie. because page refresh)
+            // we could also kill the session here and then set up the connection listener
+            console.log("DEBUG: WalletConnect already connected");
+            handleConnect();
+        } else {
+            walletConnector.on('connect', onConnected);
+        }
     }
 }
 
