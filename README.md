@@ -62,8 +62,10 @@ The response object API is to be fully designed, but it looks something like thi
 export interface ConnectionResponse {
     type: ConnectionType;                   // 'walletconnect' or 'browser'
     provider: any;                          // asyncSendable provider that can be passed to new Web3(...)
+                                            // for MetaMask, this will be window.ethereum
+                                            // for WalletConnect, we use @walletconnect/web-provider
     web3: any;                              // currently always null, maybe Web3 object in the future
-    walletConnector: WalletConnect | null;  // this will be set to the wallet
+    walletConnector: WalletConnect | null;  // WalletConnect object, or null if connected using MetaMask
 }
 ```
 
@@ -130,10 +132,11 @@ Limitations between if your wallet integrates a browser or a browser integrates 
 # TODO
 
 * Generate wallet list from database json
+* Detect mobile browsers and don't show QR-code
 * Provide multiple build targets, UMD (named walletconnect-wizard.js) + esmodule
 * Strip down the build size
 * Finalize response (maybe return Web3 object there)
-* Better documentation
+* Better documentation (document finalized response object and props to pass to `init` and `Wizard`)
 * Configure TSLint
 
 # License
