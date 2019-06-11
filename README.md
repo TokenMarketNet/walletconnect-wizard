@@ -18,7 +18,81 @@ We support different kind of wallet mechanisms (see below), though the emphasis 
 
 # Demo
 
-* See live demo
+* [See live demo](https://tokenmarketnet.github.io/walletconnect-wizard/demo/index.html)
+
+# Usage
+
+We currently provide an UMD build, which should be usable directly from the browser:
+
+```html
+<div id="root"></div>
+<script src="walletconnect-wizard/index.js"></script>
+```
+
+```javascript
+walletConnectWizard.init('root', {
+    onConnect: function(response) {
+        alert("You are connected with: " + response.type);
+        response.provider.sendAsync({
+            method: 'eth_accounts',
+            params: [],
+        }, function(error, params)  {
+            var account = params.result[0];
+            alert("Your ethereum account is:" + account);
+        });
+    }
+});
+```
+
+Usage with ES6/Typescript and React:
+
+```javascript
+import { Wizard } from 'walletconnect-wizard';
+
+<Wizard
+    onConnect={(response) => {
+        // do stuff
+    }}
+/>
+```
+
+The response object API is to be fully designed, but it looks something like this:
+
+```typescript
+export interface ConnectionResponse {
+    type: ConnectionType;                   // 'walletconnect' or 'browser'
+    provider: any;                          // asyncSendable provider that can be passed to new Web3(...)
+    web3: any;                              // currently always null, maybe Web3 object in the future
+    walletConnector: WalletConnect | null;  // this will be set to the wallet
+}
+```
+
+# Development
+
+We use StoryBook for easy local development:
+
+```
+$ yarn
+$ yarn start
+```
+
+Building:
+
+```
+$ yarn build
+```
+
+Updating github pages (live demo):
+
+```
+$ git checkout gh-pages
+$ git merge master
+$ yarn build
+$ git add lib
+$ git commit -m "Update gh-pages"
+$ git push origin gh-pages
+```
+
 
 # UI mockups
 
@@ -52,6 +126,15 @@ Limitations between if your wallet integrates a browser or a browser integrates 
 * *blockchains*: ids of supported blockchains - currently `ethereum` and `binance`
 * *install*: direct installation links to different platform
 * *operations*: what kind of operations this support: transactions, message signing, etc.
+
+# TODO
+
+* Generate wallet list from database json
+* Provide multiple build targets, UMD (named walletconnect-wizard.js) + esmodule
+* Strip down the build size
+* Finalize response (maybe return Web3 object there)
+* Better documentation
+* Configure TSLint
 
 # License
 
