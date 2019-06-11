@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div id="root"></div>
+        <script src="../lib/index.js"></script>
+        <script>
+            walletConnectWizard.init('root', {
+                onConnect: function(response) {
+                    alert("You are connected with: " + response.type);
+                    response.provider.sendAsync({
+                        method: 'eth_accounts',
+                        params: [],
+                    }, function(error, params)  {
+                        var account = params.result[0];
+                        alert("Your ethereum account is:" + account);
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>
+
