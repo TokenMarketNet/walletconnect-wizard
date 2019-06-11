@@ -1,5 +1,5 @@
 /*!
- * Download icon fron FontAwesome.
+ * Download icon from FontAwesome.
  * License CC BY 4.0: https://fontawesome.com/license/free
  */
 import * as React from 'react';

@@ -1,6 +1,11 @@
+const path = require('path');
+
 module.exports = {
     entry: "./src/index.tsx",
     output: {
+        library: 'walletConnectWizard',
+        libraryTarget: 'umd',
+        //globalObject: 'this',
         filename: "index.js",
         path: __dirname + "/lib",
     },
@@ -9,7 +14,10 @@ module.exports = {
     devtool: "source-map",
 
     resolve: {
-        extensions: [".ts", ".tsx", ".js", ".json", ".svg"]
+        extensions: [".ts", ".tsx", ".js", ".json", ".svg"],
+        alias: {
+          'styled-components': path.resolve('./node_modules/styled-components')
+        }
     },
 
     module: {
@@ -25,12 +33,13 @@ module.exports = {
         ]
     },
 
+    // NOTE: do NOT do this! it causes webpack errors and we don't like it!
     // When importing a module whose path matches one of the following, just
     // assume a corresponding global variable exists and use that instead.
     // This is important because it allows us to avoid bundling all of our
     // dependencies, which allows browsers to cache those libraries between builds.
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM"
-    }
+    //externals: {
+    //    "react": "React",
+    //    "react-dom": "ReactDOM"
+    //},
 };
