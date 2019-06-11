@@ -22,11 +22,11 @@ We support different kind of wallet mechanisms (see below), though the emphasis 
 
 # Usage
 
-We currently provide an UMD build, which should be usable directly from the browser:
+We currently provide an UMD build, which should be usable directly from the browser, and a CommonJS build.
 
 ```html
 <div id="root"></div>
-<script src="walletconnect-wizard/index.js"></script>
+<script src="./dist/umd/walletconnect-wizard.js"></script>
 ```
 
 ```javascript
@@ -89,8 +89,9 @@ Updating github pages (live demo):
 ```
 $ git checkout gh-pages
 $ git merge master
+$ rm -rf dist
 $ yarn build
-$ git add lib
+$ git add --force dist
 $ git commit -m "Update gh-pages"
 $ git push origin gh-pages
 ```
@@ -141,7 +142,7 @@ Limitations between if your wallet integrates a browser or a browser integrates 
 
 * Generate wallet list from database json
 * Detect mobile browsers and don't show QR-code
-* Provide multiple build targets, UMD (named walletconnect-wizard.js) + esmodule
+* Provide multiple build targets: [x] UMD (named walletconnect-wizard.js), [x] CommonJS, [ ] esmodule
 * Strip down the build size
 * Finalize response (maybe return Web3 object there)
 * Better documentation (document finalized response object and props to pass to `init` and `Wizard`)
