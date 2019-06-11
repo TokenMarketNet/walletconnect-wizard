@@ -1,9 +1,7 @@
 import * as qrImage from 'qr-image';
 import WalletConnect from '@walletconnect/browser';
+import WalletConnectProvider from '@walletconnect/web3-provider';
 import { ConnectionType, ConnectionResponse } from './types';
-
-// Stupid way to import this because it's a JS file w/o types...
-const WalletConnectProvider = require('@walletconnect/web3-provider').default;
 
 export const createWalletConnector = async (opts: any): Promise<WalletConnect> => {
     // Create a WalletConnector and init session

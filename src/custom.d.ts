@@ -14,3 +14,8 @@ declare module "svg-inline-react" {
     }
     export default class InlineSVG extends React.Component<InlineSVGProps, any> {}
 }
+
+declare module "@walletconnect/web3-provider" {
+    const WalletConnectProvider: any;
+    export default WalletConnectProvider;
+}

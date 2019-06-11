@@ -1,14 +1,11 @@
 const path = require('path');
 
-module.exports = {
+const ANALYZE_BUNDLE = ['1', 'true'].indexOf((process.env || {}).ANALYZE_BUNDLE) !== -1;
+const BASE_PATH = __dirname + "/dist";
+
+const baseConfig = {
+    // output: ... needs to be specified
     entry: "./src/index.tsx",
-    output: {
-        library: 'walletConnectWizard',
-        libraryTarget: 'umd',
-        //globalObject: 'this',
-        filename: "index.js",
-        path: __dirname + "/lib",
-    },
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
@@ -43,3 +40,35 @@ module.exports = {
     //    "react-dom": "ReactDOM"
     //},
 };
+
+const umdConfig = Object.assign({}, baseConfig, {
+    output: {
+        library: 'walletConnectWizard',
+        libraryTarget: 'umd',
+        globalObject: 'this',
+        filename: "walletconnect-wizard.js",
+        path: BASE_PATH + "/umd",
+    },
+});
+
+const commonJsConfig = Object.assign({}, baseConfig, {
+    output: {
+        libraryTarget: 'commonjs2',
+        filename: "index.js",
+        path: BASE_PATH + "/cjs",
+    },
+});
+
+if(ANALYZE_BUNDLE) {
+    console.log("Analyzing bundle");
+    const bundleAnalyzeConfig = commonJsConfig;
+    const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+    if(!bundleAnalyzeConfig.plugins) {
+        bundleAnalyzeConfig.plugins = [];
+    }
+    bundleAnalyzeConfig.plugins.push(new BundleAnalyzerPlugin);
+}
+
+
+module.exports = [commonJsConfig, umdConfig];

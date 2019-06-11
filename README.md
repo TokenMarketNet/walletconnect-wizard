@@ -22,11 +22,11 @@ We support different kind of wallet mechanisms (see below), though the emphasis 
 
 # Usage
 
-We currently provide an UMD build, which should be usable directly from the browser:
+We currently provide an UMD build, which should be usable directly from the browser, and a CommonJS build.
 
 ```html
 <div id="root"></div>
-<script src="walletconnect-wizard/index.js"></script>
+<script src="./dist/umd/walletconnect-wizard.js"></script>
 ```
 
 ```javascript
@@ -62,8 +62,10 @@ The response object API is to be fully designed, but it looks something like thi
 export interface ConnectionResponse {
     type: ConnectionType;                   // 'walletconnect' or 'browser'
     provider: any;                          // asyncSendable provider that can be passed to new Web3(...)
+                                            // for MetaMask, this will be window.ethereum
+                                            // for WalletConnect, we use @walletconnect/web-provider
     web3: any;                              // currently always null, maybe Web3 object in the future
-    walletConnector: WalletConnect | null;  // this will be set to the wallet
+    walletConnector: WalletConnect | null;  // WalletConnect object, or null if connected using MetaMask
 }
 ```
 
@@ -87,11 +89,20 @@ Updating github pages (live demo):
 ```
 $ git checkout gh-pages
 $ git merge master
+$ rm -rf dist
 $ yarn build
-$ git add lib
+$ git add --force dist
 $ git commit -m "Update gh-pages"
 $ git push origin gh-pages
 ```
+
+Analyzing built bundle size:
+
+```
+$ yarn analyze-bundle
+```
+
+This opens a server in http://localhost:8888/, where you can see a visual representation of the bundle contents.
 
 
 # UI mockups
@@ -130,10 +141,11 @@ Limitations between if your wallet integrates a browser or a browser integrates 
 # TODO
 
 * Generate wallet list from database json
-* Provide multiple build targets, UMD (named walletconnect-wizard.js) + esmodule
+* Detect mobile browsers and don't show QR-code
+* Provide multiple build targets: [x] UMD (named walletconnect-wizard.js), [x] CommonJS, [ ] esmodule
 * Strip down the build size
 * Finalize response (maybe return Web3 object there)
-* Better documentation
+* Better documentation (document finalized response object and props to pass to `init` and `Wizard`)
 * Configure TSLint
 
 # License

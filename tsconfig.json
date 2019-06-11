@@ -4,7 +4,7 @@
         "target": "es5",
         "module": "commonjs",
         "declaration": true,
-        "outDir": "./lib",
+        "outDir": "./dist/cjs",
         "strict": true,
         "noImplicitAny": true,
         "strictNullChecks": true,
