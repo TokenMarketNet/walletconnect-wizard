@@ -9,13 +9,16 @@ module.exports = {
     devtool: "source-map",
 
     resolve: {
-        extensions: [".ts", ".tsx", ".js", ".json"]
+        extensions: [".ts", ".tsx", ".js", ".json", ".svg"]
     },
 
     module: {
         rules: [
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+
+            // Inline svgs are awesome
+            { test: /\.svg$/, loader: 'svg-inline-loader' },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }

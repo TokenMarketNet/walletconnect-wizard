@@ -37,9 +37,11 @@ export default (props: ConnectWalletViewProps) => {
                         />
                     )}
                     {metaMaskAvailable && (
-                        <MetaMaskConnectButton
-                            handleClick={handleMetaMaskConnect}
-                        />
+                        <div>
+                            <MetaMaskConnectButton
+                                handleClick={handleMetaMaskConnect}
+                            />
+                        </div>
                     )}
                     <ButtonLink onClick={onGotoInstallWalletView}>
                         See compatible wallets
