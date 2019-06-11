@@ -1,5 +1,7 @@
 const path = require('path');
 
+const ANALYZE_BUNDLE = ['1', 'true'].indexOf((process.env || {}).ANALYZE_BUNDLE) !== -1;
+
 module.exports = {
     entry: "./src/index.tsx",
     output: {
@@ -43,3 +45,13 @@ module.exports = {
     //    "react-dom": "ReactDOM"
     //},
 };
+
+if(ANALYZE_BUNDLE) {
+    console.log("Analyzing bundle");
+    const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+    if(!module.exports.plugins) {
+        module.exports.plugins = [];
+    }
+    module.exports.plugins.push(new BundleAnalyzerPlugin);
+}

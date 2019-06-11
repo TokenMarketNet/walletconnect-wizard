@@ -95,6 +95,14 @@ $ git commit -m "Update gh-pages"
 $ git push origin gh-pages
 ```
 
+Analyzing built bundle size:
+
+```
+$ yarn analyze-bundle
+```
+
+This opens a server in http://localhost:8888/, where you can see a visual representation of the bundle contents.
+
 
 # UI mockups
 
