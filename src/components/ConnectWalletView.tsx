@@ -3,7 +3,22 @@ import WalletConnect from '@walletconnect/browser';
 import WalletConnectQrCode from './WalletConnectQrCode';
 import MetaMaskConnectButton from './MetaMaskConnectButton';
 import { SubHeading, Header, Row, Col, ButtonLink, HorizontalSeparator } from './theme';
-import { WalletConnectLogo } from './images';
+import { WalletConnectLogo, DownloadIcon } from './images';
+import styled from 'styled-components';
+
+
+const StyledDownloadIcon = styled(DownloadIcon)`
+    display: block;
+    margin: 10px auto;
+    opacity: 0.9;
+    &:hover {
+        opacity: 0.8;
+    }
+
+    svg {
+        max-width: 250px;
+    }
+`
 
 export interface ConnectWalletViewProps {
     walletConnector: WalletConnect | null | undefined;
@@ -62,7 +77,11 @@ export default (props: ConnectWalletViewProps) => {
                 </Col>
                 <Col centered>
                     <SubHeading>Install wallet</SubHeading>
-                    <div>Big icon about connecting </div>
+                    <div>
+                        <ButtonLink onClick={onGotoInstallWalletView}>
+                            <StyledDownloadIcon />
+                        </ButtonLink>
+                    </div>
                     <ButtonLink onClick={onGotoInstallWalletView}>
                         See supported wallets
                     </ButtonLink>
