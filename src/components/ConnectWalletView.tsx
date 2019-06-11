@@ -2,7 +2,8 @@ import * as React from 'react';
 import WalletConnect from '@walletconnect/browser';
 import WalletConnectQrCode from './WalletConnectQrCode';
 import MetaMaskConnectButton from './MetaMaskConnectButton';
-import { SubHeading, Header, Row, Col, ButtonLink } from './theme';
+import { SubHeading, Header, Row, Col, ButtonLink, HorizontalSeparator } from './theme';
+import { WalletConnectLogo } from './images';
 
 export interface ConnectWalletViewProps {
     walletConnector: WalletConnect | null | undefined;
@@ -32,9 +33,21 @@ export default (props: ConnectWalletViewProps) => {
                 <Col centered>
                     <SubHeading>Connect wallet</SubHeading>
                     {!!walletConnector && (
-                        <WalletConnectQrCode
-                            walletConnector={walletConnector}
-                        />
+                        <div>
+                            <WalletConnectQrCode
+                                walletConnector={walletConnector}
+                            />
+
+                            <div>
+                                <small>Powered by</small>{' '}
+                                <WalletConnectLogo style={{ width: 120, marginBottom: -8 }} />
+                            </div>
+                
+                        </div>
+                    )}
+                    
+                    {(walletConnector && metaMaskAvailable) && (
+                        <HorizontalSeparator>or</HorizontalSeparator>
                     )}
                     {metaMaskAvailable && (
                         <div>

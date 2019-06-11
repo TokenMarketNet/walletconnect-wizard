@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import * as metaMaskLogo from '../assets/metamask-fox.svg';
-import SVG from 'svg-inline-react';
+import { MetaMaskLogo } from './images';
 
 //const MetaMaskLogo = require('../assets/metamask-fox.svg');
 
@@ -22,7 +21,7 @@ const MetaMaskConnectButton = ({ className, handleClick }: MetaMaskConnectButton
             className={className}
             onClick={onClick}
         >
-            <span>Connect with MetaMask</span> <SVG src={metaMaskLogo} />
+            <span>Connect with MetaMask</span> <MetaMaskLogo />
         </button>
     )
 }
@@ -30,13 +29,12 @@ const MetaMaskConnectButton = ({ className, handleClick }: MetaMaskConnectButton
 const StyledMetaMaskConnectButton = styled(MetaMaskConnectButton)`
     font-size: 1.25em;
     border: 0;
-    //border: 2px solid #CD6116;
     box-shadow: none;
     border-shadow: none;
     border-radius: 0;
     background: white;
     cursor: pointer;
-    padding: 8px 20px;
+    padding: 0 20px;
     display: flex;
     flex-direction: row;
     margin: 0 auto;

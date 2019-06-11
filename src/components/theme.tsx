@@ -114,3 +114,16 @@ export const Col = styled.section<ColProps>`
 
     text-align: ${(props: ColProps) => props.centered ? 'center' : 'inherit'};
 `
+
+export const HorizontalSeparator = styled.div`
+    color: ${themeVar('colorGray')};
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    &::before {
+        content: "— ";
+    }
+    &::after {
+        content: " —";
+    }
+`
