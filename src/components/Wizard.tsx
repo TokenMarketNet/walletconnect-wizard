@@ -36,6 +36,14 @@ class Wizard extends React.Component<WizardProps, WizardState> {
         this.setState({
             metaMaskAvailable: isMetaMaskInstalled(),
         });
+
+        // development purposes
+        const match = window.location.search.match(/walletConnectWizardView=([a-zA-Z\-\_]+)/)
+        if (match) {
+            this.setState({
+                currentView: match[1] as View,
+            });
+        }
     }
 
     componentWillUnmount() {

@@ -1,6 +1,6 @@
 {
   "name": "walletconnect-wizard",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A React component to integrate WalletConnect and web3 wallets to your service easily",
   "main": "dist/cjs/index.js",
   "types": "dist/cjs/index.d.ts",
