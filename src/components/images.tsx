@@ -5,6 +5,7 @@
 import * as React from 'react';
 import SVG from 'svg-inline-react';
 import * as metaMaskLogo from '../assets/metamask-fox.svg';
+import * as trustWalletLogo from '../assets/trustwallet-logo.svg';
 import * as downloadIcon from '../assets/download-solid.svg';
 import walletConnectLogoDataUri  from '../assets/walletconnect-logo';
 
@@ -24,6 +25,8 @@ const SVGWrapper = (props: ImageWrapperProps) => (
 )
 
 export const MetaMaskLogo = () => <SVG src={metaMaskLogo} />;
+
+export const TrustWalletLogo = () => <SVG src={trustWalletLogo} />;
 
 export const WalletConnectLogo = (props: any) => <img src={walletConnectLogoDataUri} {...props} />;
 
