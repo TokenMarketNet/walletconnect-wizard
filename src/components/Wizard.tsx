@@ -184,7 +184,7 @@ class Wizard extends React.Component<WizardProps, WizardState> {
 
         walletConnector.on('disconnect', onDisconnected);
 
-        if(walletConnector.connected) {
+        if(walletConnector.connected && persistConnection) {
             // Handle the case where we are connected already (ie. because page refresh)
             // we could also kill the session here and then set up the connection listener
             console.log("DEBUG: WalletConnect already connected");
