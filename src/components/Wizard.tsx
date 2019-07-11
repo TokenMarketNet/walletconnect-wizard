@@ -84,9 +84,9 @@ class Wizard extends React.Component<WizardProps, WizardState> {
                         brandName={texts.brandName}
                         gotoConnectWalletView={this.createChangeViewHandler(View.ConnectWallet)}
                     />
-                    ) : (currentView === View.Connected) ? (
-                        <div>Connected!</div>
-                    ) : ''}
+                ) : (currentView === View.Connected) ? (
+                    <div>Connected!</div>
+                ) : ''}
             </ThemeWrapper>
         )
     }
