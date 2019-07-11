@@ -25,6 +25,7 @@ export interface ConnectWalletViewProps {
     metaMaskAvailable: boolean;
     gotoInstallWalletView: () => void;
     handleMetaMaskConnect: () => void;
+    headerText?: string;
 }
 export default (props: ConnectWalletViewProps) => {
     const {
@@ -32,6 +33,7 @@ export default (props: ConnectWalletViewProps) => {
         metaMaskAvailable,
         handleMetaMaskConnect,
         gotoInstallWalletView,
+        headerText,
     } = props;
     const onGotoInstallWalletView = (e: React.SyntheticEvent) => {
         e.preventDefault();
@@ -40,10 +42,11 @@ export default (props: ConnectWalletViewProps) => {
 
     return (
         <div>
-            <Header>
-                In order to use this service you need to have a compatible wallet{' '}
-                application. The wallet securely stores and transfers your assets.
-            </Header>
+            {!!headerText && (
+                <Header>
+                    {headerText}
+                </Header>
+            )}
             <Row>
                 <Col centered>
                     <SubHeading>Connect wallet</SubHeading>

@@ -12,9 +12,9 @@ export interface WizardProps {
     onConnect?: (response: ConnectionResponse) => void;
     onDisconnect?: () => void;
     walletConnectOpts?: any;
-    brandName?: string;
     theme?: any;
     persistConnection?: boolean;
+    texts?: Record<string, string>;
 }
 export interface WizardState {
     currentView: View;
@@ -57,7 +57,14 @@ class Wizard extends React.Component<WizardProps, WizardState> {
             walletConnector,
             metaMaskAvailable,
         } = this.state;
-        const brandName = this.props.brandName || 'This application';
+        const texts = {
+            brandName:  'This application',
+            connectWalletHeader: (
+                'In order to use this service you need to have a compatible wallet ' +
+                'application. The wallet securely stores and transfers your assets.'
+            ),
+            ...(this.props.texts || {})
+        };
 
         return (
             <ThemeWrapper
@@ -70,10 +77,11 @@ class Wizard extends React.Component<WizardProps, WizardState> {
                         metaMaskAvailable={metaMaskAvailable}
                         handleMetaMaskConnect={this.handleMetaMaskConnect}
                         gotoInstallWalletView={this.createChangeViewHandler(View.InstallWallet)}
+                        headerText={texts.connectWalletHeader}
                     />
                 ) : (currentView === View.InstallWallet) ? (
                     <InstallWalletView
-                        brandName={brandName}
+                        brandName={texts.brandName}
                         gotoConnectWalletView={this.createChangeViewHandler(View.ConnectWallet)}
                     />
                     ) : (currentView === View.Connected) ? (
