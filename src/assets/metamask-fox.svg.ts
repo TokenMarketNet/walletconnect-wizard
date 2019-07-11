@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns:ev="http://www.w3.org/2001/xml-events"
+export default `<svg version="1.1" id="Layer_1" xmlns:ev="http://www.w3.org/2001/xml-events"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 318.6 318.6"
 	 style="enable-background:new 0 0 318.6 318.6;" xml:space="preserve">
 <style type="text/css">
@@ -58,4 +56,4 @@
 <polygon class="st6" points="103.6,138.2 51.3,153.5 33.9,207.7 80.3,207.7 111.4,208.1 87.8,162.1 "/>
 <polygon class="st6" points="174.6,164.6 177.9,106.9 193.1,65.8 125.6,65.8 140.6,106.9 144.1,164.6 145.3,182.8 145.4,227.6 
 	173.1,227.6 173.3,182.8 "/>
-</svg>
+</svg>`;
