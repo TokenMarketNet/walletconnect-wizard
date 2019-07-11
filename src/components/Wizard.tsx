@@ -14,6 +14,7 @@ export interface WizardProps {
     walletConnectOpts?: any;
     brandName?: string;
     theme?: any;
+    persistConnection?: boolean;
 }
 export interface WizardState {
     currentView: View;
@@ -114,17 +115,20 @@ class Wizard extends React.Component<WizardProps, WizardState> {
 
     private async initWalletConnector() {
         console.log('DEBUG: initWalletConnector');
+        let { walletConnectOpts } = this.props;
         const {
-            walletConnectOpts,
             onConnect,
             onDisconnect,
+            persistConnection,
         } = this.props;
 
-        const opts = {
+        walletConnectOpts = {
             ...DEFAULT_WALLET_CONNECT_OPTS,
             ...(walletConnectOpts || {}),
         }
-        const walletConnector = await createWalletConnector(opts);
+        const walletConnector = await createWalletConnector(walletConnectOpts, {
+            persistConnection
+        });
 
         this.setState({
             walletConnector,

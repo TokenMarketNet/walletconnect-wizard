@@ -3,9 +3,20 @@ import WalletConnect from '@walletconnect/browser';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import { ConnectionType, ConnectionResponse } from './types';
 
-export const createWalletConnector = async (opts: any): Promise<WalletConnect> => {
+export const createWalletConnector = async (
+    walletConnectOpts: any,
+    extraOpts: any = undefined
+): Promise<WalletConnect> => {
     // Create a WalletConnector and init session
-    const walletConnector = new WalletConnect(opts);
+    const walletConnector = new WalletConnect(walletConnectOpts);
+    const persistConnection = (extraOpts || {}).persistConnection;
+
+    // Kill existing session if it exists and we're not persisting the connection
+    if(walletConnector.connected && !persistConnection) {
+        walletConnector.killSession();
+    }
+
+    // Create a new session in either case
     if(!walletConnector.connected) {
         await walletConnector.createSession();
     }
