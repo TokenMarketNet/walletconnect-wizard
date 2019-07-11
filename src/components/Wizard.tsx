@@ -12,8 +12,9 @@ export interface WizardProps {
     onConnect?: (response: ConnectionResponse) => void;
     onDisconnect?: () => void;
     walletConnectOpts?: any;
-    brandName?: string;
     theme?: any;
+    persistConnection?: boolean;
+    texts?: Record<string, string>;
 }
 export interface WizardState {
     currentView: View;
@@ -56,7 +57,14 @@ class Wizard extends React.Component<WizardProps, WizardState> {
             walletConnector,
             metaMaskAvailable,
         } = this.state;
-        const brandName = this.props.brandName || 'This application';
+        const texts = {
+            brandName:  'This application',
+            connectWalletHeader: (
+                'In order to use this service you need to have a compatible wallet ' +
+                'application. The wallet securely stores and transfers your assets.'
+            ),
+            ...(this.props.texts || {})
+        };
 
         return (
             <ThemeWrapper
@@ -69,15 +77,16 @@ class Wizard extends React.Component<WizardProps, WizardState> {
                         metaMaskAvailable={metaMaskAvailable}
                         handleMetaMaskConnect={this.handleMetaMaskConnect}
                         gotoInstallWalletView={this.createChangeViewHandler(View.InstallWallet)}
+                        headerText={texts.connectWalletHeader}
                     />
                 ) : (currentView === View.InstallWallet) ? (
                     <InstallWalletView
-                        brandName={brandName}
+                        brandName={texts.brandName}
                         gotoConnectWalletView={this.createChangeViewHandler(View.ConnectWallet)}
                     />
-                    ) : (currentView === View.Connected) ? (
-                        <div>Connected!</div>
-                    ) : ''}
+                ) : (currentView === View.Connected) ? (
+                    <div>Connected!</div>
+                ) : ''}
             </ThemeWrapper>
         )
     }
@@ -114,17 +123,20 @@ class Wizard extends React.Component<WizardProps, WizardState> {
 
     private async initWalletConnector() {
         console.log('DEBUG: initWalletConnector');
+        let { walletConnectOpts } = this.props;
         const {
-            walletConnectOpts,
             onConnect,
             onDisconnect,
+            persistConnection,
         } = this.props;
 
-        const opts = {
+        walletConnectOpts = {
             ...DEFAULT_WALLET_CONNECT_OPTS,
             ...(walletConnectOpts || {}),
         }
-        const walletConnector = await createWalletConnector(opts);
+        const walletConnector = await createWalletConnector(walletConnectOpts, {
+            persistConnection
+        });
 
         this.setState({
             walletConnector,
@@ -172,7 +184,7 @@ class Wizard extends React.Component<WizardProps, WizardState> {
 
         walletConnector.on('disconnect', onDisconnected);
 
-        if(walletConnector.connected) {
+        if(walletConnector.connected && persistConnection) {
             // Handle the case where we are connected already (ie. because page refresh)
             // we could also kill the session here and then set up the connection listener
             console.log("DEBUG: WalletConnect already connected");

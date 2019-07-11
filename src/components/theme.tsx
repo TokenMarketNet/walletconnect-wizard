@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 export type Theme = Record<string, any>;
 
@@ -21,7 +21,7 @@ export const themeVar = (varName: string) => (props: any): any => {
     return value;
 }
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyleWrapper = styled.div`
     * {
         color: ${themeVar('colorText')};
         font-family: ${themeVar('fontFamilyMain')};
@@ -43,8 +43,9 @@ export interface ThemeWrapperProps {
 export const ThemeWrapper = ({ theme, children, className }: ThemeWrapperProps) => (
     <ThemeProvider theme={theme || DefaultTheme}>
         <div className={className}>
-            <GlobalStyle />
-            {children}
+            <GlobalStyleWrapper>
+                {children}
+            </GlobalStyleWrapper>
         </div>
     </ThemeProvider>
 )
