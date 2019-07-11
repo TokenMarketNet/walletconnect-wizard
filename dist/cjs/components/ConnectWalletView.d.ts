@@ -5,6 +5,7 @@ export interface ConnectWalletViewProps {
     metaMaskAvailable: boolean;
     gotoInstallWalletView: () => void;
     handleMetaMaskConnect: () => void;
+    headerText?: string;
 }
 declare const _default: (props: ConnectWalletViewProps) => JSX.Element;
 export default _default;

@@ -2,7 +2,7 @@ import * as React from 'react';
 export declare type Theme = Record<string, any>;
 export declare const DefaultTheme: Theme;
 export declare const themeVar: (varName: string) => (props: any) => any;
-export declare const GlobalStyle: import("styled-components").GlobalStyleComponent<any, import("styled-components").DefaultTheme>;
+export declare const GlobalStyleWrapper: import("styled-components").StyledComponent<"div", any, {}, never>;
 export interface ThemeWrapperProps {
     children: React.ReactNode;
     className?: string;

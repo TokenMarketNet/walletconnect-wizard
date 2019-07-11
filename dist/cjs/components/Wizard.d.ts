@@ -6,8 +6,9 @@ export interface WizardProps {
     onConnect?: (response: ConnectionResponse) => void;
     onDisconnect?: () => void;
     walletConnectOpts?: any;
-    brandName?: string;
     theme?: any;
+    persistConnection?: boolean;
+    texts?: Record<string, string>;
 }
 export interface WizardState {
     currentView: View;
