@@ -80,6 +80,10 @@ export const ButtonLink = styled.button`
     }
 `
 
+export const SupportBullets = styled.div`
+    text-align: left;
+`
+
 export const Row = styled.div`
     display: flex;
     flex-direction: row;

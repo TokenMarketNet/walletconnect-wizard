@@ -2,7 +2,7 @@ import * as React from 'react';
 import WalletConnect from '@walletconnect/browser';
 import WalletConnectQrCode from './WalletConnectQrCode';
 import MetaMaskConnectButton from './MetaMaskConnectButton';
-import { SubHeading, Header, Row, Col, ButtonLink, HorizontalSeparator } from './theme';
+import { SubHeading, Header, Row, Col, ButtonLink, HorizontalSeparator, SupportBullets } from './theme';
 import { WalletConnectLogo, DownloadIcon } from './images';
 import styled from 'styled-components';
 
@@ -26,7 +26,11 @@ export interface ConnectWalletViewProps {
     gotoInstallWalletView: () => void;
     handleMetaMaskConnect: () => void;
     headerText?: string;
+    blockchainName?: string;
+    noWalletHelp?: string;
+    hasWalletHelp?: string;
 }
+
 export default (props: ConnectWalletViewProps) => {
     const {
         walletConnector,
@@ -34,6 +38,9 @@ export default (props: ConnectWalletViewProps) => {
         handleMetaMaskConnect,
         gotoInstallWalletView,
         headerText,
+        blockchainName,
+        noWalletHelp,
+        hasWalletHelp,
     } = props;
     const onGotoInstallWalletView = (e: React.SyntheticEvent) => {
         e.preventDefault();
@@ -49,19 +56,25 @@ export default (props: ConnectWalletViewProps) => {
             )}
             <Row>
                 <Col centered>
-                    <SubHeading>Connect wallet</SubHeading>
+                    {/* TODO: Need to figure out how to localise the article before the name*/}
+                    <SubHeading>I have an {blockchainName} wallet</SubHeading>
+
+                    <p className="walletconnect-has-wallet-help">
+                        {hasWalletHelp}
+                    </p>
+
                     {!!walletConnector && (
                         <div>
+
+                            <WalletConnectLogo style={{ width: 120, marginBottom: -8 }} />
+
                             <WalletConnectQrCode
                                 walletConnector={walletConnector}
                             />
 
-                            <div>
-                                <small>Powered by</small>{' '}
-                                <WalletConnectLogo style={{ width: 120, marginBottom: -8 }} />
-                            </div>
-                
                         </div>
+
+
                     )}
                     
                     {(walletConnector && metaMaskAvailable) && (
@@ -74,20 +87,22 @@ export default (props: ConnectWalletViewProps) => {
                             />
                         </div>
                     )}
-                    <ButtonLink onClick={onGotoInstallWalletView}>
-                        See compatible wallets
-                    </ButtonLink>
                 </Col>
                 <Col centered>
-                    <SubHeading>Install wallet</SubHeading>
+                    <SubHeading>I do not have {blockchainName} wallet yet</SubHeading>
+
+                    <p className="walletconnect-no-wallet-support-text">{noWalletHelp}</p>
+
                     <div>
                         <ButtonLink onClick={onGotoInstallWalletView}>
                             <StyledDownloadIcon />
                         </ButtonLink>
                     </div>
+
                     <ButtonLink onClick={onGotoInstallWalletView}>
                         See supported wallets
-                    </ButtonLink>
+                    </ButtonLink> for installation instructions.
+
                 </Col>
             </Row>
         </div>
