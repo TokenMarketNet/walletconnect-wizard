@@ -12,6 +12,7 @@ export declare const ThemeWrapper: ({ theme, children, className }: ThemeWrapper
 export declare const Header: import("styled-components").StyledComponent<"header", any, {}, never>;
 export declare const SubHeading: import("styled-components").StyledComponent<"h2", any, {}, never>;
 export declare const ButtonLink: import("styled-components").StyledComponent<"button", any, {}, never>;
+export declare const SupportBullets: import("styled-components").StyledComponent<"div", any, {}, never>;
 export declare const Row: import("styled-components").StyledComponent<"div", any, {}, never>;
 export interface ColProps {
     centered?: boolean;

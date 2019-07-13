@@ -6,6 +6,9 @@ export interface ConnectWalletViewProps {
     gotoInstallWalletView: () => void;
     handleMetaMaskConnect: () => void;
     headerText?: string;
+    blockchainName?: string;
+    noWalletHelp?: string;
+    hasWalletHelp?: string;
 }
 declare const _default: (props: ConnectWalletViewProps) => JSX.Element;
 export default _default;
