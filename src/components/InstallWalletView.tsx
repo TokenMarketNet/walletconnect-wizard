@@ -81,11 +81,17 @@ export default (props: InstallWalletViewProps) => {
             </Header>
             <Row>
                 <Col>
-                    <SubHeading>Mobile application wallets</SubHeading>
+                    <SubHeading>Mobile wallets</SubHeading>
+
+                    <p>Install to your iOS or Android mobile phone.</p>
+
                     <WalletList wallets={supportedWallets.mobile} />
                 </Col>
                 <Col>
-                    <SubHeading>Desktop / browser extension wallets</SubHeading>
+                    <SubHeading>Web browser wallets</SubHeading>
+
+                    <p>Install to your Chrome, Firefox or Opera web browser.</p>
+
                     <WalletList wallets={supportedWallets.desktop} />
                 </Col>
             </Row>

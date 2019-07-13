@@ -59,10 +59,17 @@ class Wizard extends React.Component<WizardProps, WizardState> {
         } = this.state;
         const texts = {
             brandName:  'This application',
+
             connectWalletHeader: (
-                'In order to use this service you need to have a compatible wallet ' +
-                'application. The wallet securely stores and transfers your assets.'
+                'WalletConnect demo'
             ),
+
+            blockchainName: 'Ethereum',
+
+            hasWalletHelp: 'Scan the QR code or click MetaMask button to get started.',
+
+            noWalletHelp: 'In order to user this service you need to have a wallet application for Ethereum blockchain installed.',
+
             ...(this.props.texts || {})
         };
 
@@ -78,6 +85,9 @@ class Wizard extends React.Component<WizardProps, WizardState> {
                         handleMetaMaskConnect={this.handleMetaMaskConnect}
                         gotoInstallWalletView={this.createChangeViewHandler(View.InstallWallet)}
                         headerText={texts.connectWalletHeader}
+                        blockchainName={texts.blockchainName}
+                        noWalletHelp={texts.noWalletHelp}
+                        hasWalletHelp={texts.hasWalletHelp}
                     />
                 ) : (currentView === View.InstallWallet) ? (
                     <InstallWalletView
