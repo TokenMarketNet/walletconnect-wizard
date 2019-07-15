@@ -1623,6 +1623,15 @@
   resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.9.tgz#a67287861c928ebf4159a908d1fb1a2a34d4097a"
   integrity sha512-p8zp5xqkly3g4cCmo2mKOHI9+Z/kObmDj0BmjbDDJQlgDTiEGTbm17MEwTAusV6XceCy+bNw9q/ZHXHyKo3zkg==
 
+"@walletconnect/browser@1.0.0-beta.26":
+  version "1.0.0-beta.26"
+  resolved "https://registry.yarnpkg.com/@walletconnect/browser/-/browser-1.0.0-beta.26.tgz#0091b91fe1a727fc60e9ac93f963463e1001db28"
+  integrity sha512-fRgyLFlw3PO6jEuRWPyyizNQIrnhUSP+GkQ0upX+IeJLYFrQIdARcsfE+CjORXaIdIRteRKXMEVCAmFo/vnyWA==
+  dependencies:
+    "@walletconnect/core" "^1.0.0-beta.26"
+    "@walletconnect/types" "^1.0.0-beta.26"
+    "@walletconnect/utils" "^1.0.0-beta.26"
+
 "@walletconnect/browser@^1.0.0-beta.25":
   version "1.0.0-beta.25"
   resolved "https://registry.yarnpkg.com/@walletconnect/browser/-/browser-1.0.0-beta.25.tgz#4dfc692237db84ca41729c7eea6c2dbb2a583a58"
@@ -1640,6 +1649,14 @@
     "@walletconnect/types" "^1.0.0-beta.25"
     "@walletconnect/utils" "^1.0.0-beta.25"
 
+"@walletconnect/core@^1.0.0-beta.26":
+  version "1.0.0-beta.26"
+  resolved "https://registry.yarnpkg.com/@walletconnect/core/-/core-1.0.0-beta.26.tgz#74796fe0372028110ff892320308dbc29d0f655e"
+  integrity sha512-2xeztI0Lpz6QluIGLDkfmJIPm+g3KbD3w+KzGJ2E1cWqQb1Tsvj+6zpNLn2WTQGn5xLub1b3BLgXwGxLcMsA9w==
+  dependencies:
+    "@walletconnect/types" "^1.0.0-beta.26"
+    "@walletconnect/utils" "^1.0.0-beta.26"
+
 "@walletconnect/qrcode-modal@^1.0.0-beta.25":
   version "1.0.0-beta.25"
   resolved "https://registry.yarnpkg.com/@walletconnect/qrcode-modal/-/qrcode-modal-1.0.0-beta.25.tgz#fbb813b9ad659edf60a91e521fe1c66a34b67cd5"
@@ -1653,6 +1670,11 @@
   resolved "https://registry.yarnpkg.com/@walletconnect/types/-/types-1.0.0-beta.25.tgz#18b6bcbd73d25f99023b5124c9d92900b3b71a46"
   integrity sha512-HF7WOsKzrkjM0T3yCRKiquZFJnk3A8zCnmy6ueQ/lvIQGnnUaJDY4tZRRXdlntTmbiCcIBEz/tYM2Z7r4O79SA==
 
+"@walletconnect/types@^1.0.0-beta.26":
+  version "1.0.0-beta.26"
+  resolved "https://registry.yarnpkg.com/@walletconnect/types/-/types-1.0.0-beta.26.tgz#a21def3fb302b55f8e93532a9c33e5a2f4b93588"
+  integrity sha512-uUNDKo3gr18AtGTFi8+VrcZiV2eHlaq2+uMGkAoMeUZe2MK28MH3GkH0Dh2yDTVCh1bopMri61eMvwqKaW6/VQ==
+
 "@walletconnect/utils@^1.0.0-beta.25":
   version "1.0.0-beta.25"
   resolved "https://registry.yarnpkg.com/@walletconnect/utils/-/utils-1.0.0-beta.25.tgz#6ddffb9553e9c013ce4c62297a86b024f7afd250"
@@ -1664,26 +1686,25 @@
     "@walletconnect/types" "^1.0.0-beta.25"
     bignumber.js "^8.1.1"
 
-"@walletconnect/web3-provider@^1.0.0-beta.25":
-  version "1.0.0-beta.25"
-  resolved "https://registry.yarnpkg.com/@walletconnect/web3-provider/-/web3-provider-1.0.0-beta.25.tgz#7e277e6ed6c0f029d8728efc069374a76bc0ca89"
-  integrity sha512-o1HaOY3od88azaarhWYTtXcjFIwRw3Pn5hQPkZOm5ZT000dbsLZIHNhobgY8Km6nBTopxKEQnv2C6b8OGApI0Q==
+"@walletconnect/utils@^1.0.0-beta.26":
+  version "1.0.0-beta.26"
+  resolved "https://registry.yarnpkg.com/@walletconnect/utils/-/utils-1.0.0-beta.26.tgz#0dc9dc7a79fb17696266278fba00801a08ca81b3"
+  integrity sha512-CW2rkccGtKZNjr+vtTCXyB986g8OWX9ove957a36CdVrSzTQvMNpprzeatpBEzNlwX1KxNyJL/zBqnc1Maf1aw==
   dependencies:
-    "@walletconnect/browser" "^1.0.0-beta.25"
-    "@walletconnect/qrcode-modal" "^1.0.0-beta.25"
-    "@walletconnect/types" "^1.0.0-beta.25"
-    "@walletconnect/web3-subprovider" "^1.0.0-beta.25"
-    web3-provider-engine "github:walletconnect/web3-provider-engine"
+    "@ethersproject/address" "^5.0.0-beta.125"
+    "@ethersproject/bytes" "^5.0.0-beta.126"
+    "@ethersproject/strings" "^5.0.0-beta.125"
+    "@walletconnect/types" "^1.0.0-beta.26"
+    bignumber.js "^8.1.1"
 
-"@walletconnect/web3-subprovider@^1.0.0-beta.25":
-  version "1.0.0-beta.25"
-  resolved "https://registry.yarnpkg.com/@walletconnect/web3-subprovider/-/web3-subprovider-1.0.0-beta.25.tgz#8c36f3a0a2c75c2929bb76fffd02df862ebfb7f7"
-  integrity sha512-jLhCPw/b+rXESSAdJsqMFaWUksJaz7Hz3letpxzcoVZ5NXP2YsbxY6Y5UDWwXpuj3poGLr96eUsQp8f+tD6kRA==
+"@walletconnect/web3-provider@1.0.0-beta.26":
+  version "1.0.0-beta.26"
+  resolved "https://registry.yarnpkg.com/@walletconnect/web3-provider/-/web3-provider-1.0.0-beta.26.tgz#afbd54c2d15df137a4b21fa35f2bb41ec360d8f9"
+  integrity sha512-9WPR0yWTuHc5I8mIYmv5Hq35fE8kT3JAZ8y7sghgq8rUQdHSIrO7dt3/Nfn9AVYoc5DNnFCXYSPZ+i4ZLVXq4Q==
   dependencies:
     "@walletconnect/browser" "^1.0.0-beta.25"
     "@walletconnect/qrcode-modal" "^1.0.0-beta.25"
     "@walletconnect/types" "^1.0.0-beta.25"
-    "@walletconnect/utils" "^1.0.0-beta.25"
     web3-provider-engine "github:walletconnect/web3-provider-engine"
 
 "@webassemblyjs/ast@1.8.5":
