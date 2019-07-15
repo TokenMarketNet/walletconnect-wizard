@@ -66,7 +66,8 @@ class Wizard extends React.Component<WizardProps, WizardState> {
 
             blockchainName: 'Ethereum',
 
-            hasWalletHelp: 'Scan the QR code or click MetaMask button to get started.',
+            hasWalletHelp: 'Scan the QR code with your mobile wallet or click the MetaMask button to get started.',
+            hasWalletHelpNoMetaMask: 'Scan the QR code with your mobile wallet or install the MetaMask extension to get started.',
 
             noWalletHelp: 'In order to user this service you need to have a wallet application for Ethereum blockchain installed.',
 
@@ -88,6 +89,7 @@ class Wizard extends React.Component<WizardProps, WizardState> {
                         blockchainName={texts.blockchainName}
                         noWalletHelp={texts.noWalletHelp}
                         hasWalletHelp={texts.hasWalletHelp}
+                        hasWalletHelpNoMetaMask={texts.hasWalletHelpNoMetaMask}
                     />
                 ) : (currentView === View.InstallWallet) ? (
                     <InstallWalletView

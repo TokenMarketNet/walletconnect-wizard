@@ -29,6 +29,7 @@ export interface ConnectWalletViewProps {
     blockchainName?: string;
     noWalletHelp?: string;
     hasWalletHelp?: string;
+    hasWalletHelpNoMetaMask?: string;
 }
 
 export default (props: ConnectWalletViewProps) => {
@@ -41,6 +42,7 @@ export default (props: ConnectWalletViewProps) => {
         blockchainName,
         noWalletHelp,
         hasWalletHelp,
+        hasWalletHelpNoMetaMask,
     } = props;
     const onGotoInstallWalletView = (e: React.SyntheticEvent) => {
         e.preventDefault();
@@ -60,7 +62,7 @@ export default (props: ConnectWalletViewProps) => {
                     <SubHeading>I have an {blockchainName} wallet</SubHeading>
 
                     <p className="walletconnect-has-wallet-help">
-                        {hasWalletHelp}
+                        {metaMaskAvailable ? hasWalletHelp : hasWalletHelpNoMetaMask}
                     </p>
 
                     {!!walletConnector && (
