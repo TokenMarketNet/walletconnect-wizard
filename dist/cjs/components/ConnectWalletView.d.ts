@@ -9,6 +9,7 @@ export interface ConnectWalletViewProps {
     blockchainName?: string;
     noWalletHelp?: string;
     hasWalletHelp?: string;
+    hasWalletHelpNoMetaMask?: string;
 }
 declare const _default: (props: ConnectWalletViewProps) => JSX.Element;
 export default _default;
