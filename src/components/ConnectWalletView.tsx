@@ -74,6 +74,12 @@ export default (props: ConnectWalletViewProps) => {
                                 walletConnector={walletConnector}
                             />
 
+                            <div>
+                                <small>
+                                    Currently WalletConnect supports iPhone wallets only.
+                                    Android support is coming very soon.
+                                </small>
+                            </div>
                         </div>
 
 
