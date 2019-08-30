@@ -67,19 +67,11 @@ export default (props: ConnectWalletViewProps) => {
 
                     {!!walletConnector && (
                         <div>
-
                             <WalletConnectLogo style={{ width: 120, marginBottom: -8 }} />
 
                             <WalletConnectQrCode
                                 walletConnector={walletConnector}
                             />
-
-                            <div>
-                                <small>
-                                    Currently WalletConnect supports iPhone wallets only.
-                                    Android support is coming very soon.
-                                </small>
-                            </div>
                         </div>
 
 
